@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const isDevelopment = process.env.NODE_ENV !== 'production'
+
 module.exports = {
   entry: path.resolve(__dirname, './src/index.tsx'),
   output: {
@@ -10,7 +12,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  mode: 'development',
+  mode: isDevelopment ? 'development' : 'production',
   module: {
     rules: [
       {
@@ -42,4 +44,7 @@ module.exports = {
     }),
   ],
   stats: 'errors-only',
+  devServer: {
+    hot: true,
+  },
 }

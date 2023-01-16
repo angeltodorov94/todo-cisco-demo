@@ -1,11 +1,35 @@
-// eslint-disable-next-line import/no-unresolved
-import './App.scss'
+import { useState } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import HomePage from './routes/HomePage'
+import SignInPage from './routes/SignInPage'
+import SignUpPage from './routes/SignUpPage'
+
+const guestRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <SignInPage />,
+  },
+  {
+    path: '/sign-up',
+    element: <SignUpPage />,
+  },
+])
+
+const authRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />,
+  },
+])
 
 const App = () => {
+  const [auth, setAuth] = useState(false)
+
   return (
-    <h1 className="title" data-testid="custom-element">
-      Hello World
-    </h1>
+    <>
+      <button onClick={() => setAuth(!auth)}>Switch</button>
+      <RouterProvider router={auth ? authRouter : guestRouter} />
+    </>
   )
 }
 
