@@ -1,4 +1,5 @@
 import { useGetPostsQuery } from '../services/todosAPI'
+import { logoutHandler } from '../utils/helperFunctions'
 
 const HomePage = () => {
   const { data, isLoading, isError } = useGetPostsQuery()
@@ -9,6 +10,7 @@ const HomePage = () => {
   return (
     <div>
       <h1>Home Page</h1>
+      <button onClick={() => logoutHandler()}>Logout</button>
       {isLoading && <p>Loading...</p>}
       {data && renderPosts()}
       {isError && <p>Something went wrong!!!</p>}

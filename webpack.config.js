@@ -46,5 +46,6 @@ module.exports = {
   stats: 'errors-only',
   devServer: {
     hot: true,
+    historyApiFallback: true,
   },
 }

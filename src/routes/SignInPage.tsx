@@ -1,8 +1,12 @@
 import { useFormik } from 'formik'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { signInHandler } from '../utils/helperFunctions'
 import { signInSchema } from '../utils/validationSchemas'
 
 const SignInPage = () => {
+  const [error, setError] = useState<string | null>(null)
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -10,13 +14,20 @@ const SignInPage = () => {
     },
     validationSchema: signInSchema,
     onSubmit: (values) => {
-      console.log(values)
+      setError(null)
+
+      try {
+        signInHandler(values.email, values.password)
+      } catch (e: any) {
+        setError(e.message)
+      }
     },
   })
 
   return (
-    <>
+    <div>
       <h1>Sign In</h1>
+      {error && <p>{error}</p>}
       <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="email">Email:</label>
@@ -55,8 +66,8 @@ const SignInPage = () => {
         <button type="submit">Sign In</button>
       </form>
       <p>or</p>
-      <Link to="sign-up">Create an account</Link>
-    </>
+      <Link to="/sign-up">Create an account</Link>
+    </div>
   )
 }
 

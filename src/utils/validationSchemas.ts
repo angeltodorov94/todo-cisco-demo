@@ -7,6 +7,9 @@ export const signUpSchema = Yup.object({
     .length(8, 'Password must be 8 characters!')
     .matches(/[A-Za-z]{8}/, 'Password can only contain a-z, A-Z')
     .required('Required!'),
+  confirmPassword: Yup.string()
+    .required()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 })
 
 export const signInSchema = Yup.object({

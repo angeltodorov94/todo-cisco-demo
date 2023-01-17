@@ -1,4 +1,5 @@
 import { useFormik } from 'formik'
+import { addUserHandler, isEmailTaken } from '../utils/helperFunctions'
 import { signUpSchema } from '../utils/validationSchemas'
 
 const SignUpPage = () => {
@@ -7,10 +8,18 @@ const SignUpPage = () => {
       email: '',
       name: '',
       password: '',
+      confirmPassword: '',
     },
     validationSchema: signUpSchema,
-    onSubmit: (values) => {
-      console.log(values)
+    onSubmit: ({ email, password, name }) => {
+      const emailCheck = isEmailTaken(email)
+
+      if (emailCheck) {
+        formik.setErrors({ email: 'Email is already taken' })
+        return
+      }
+
+      addUserHandler(email, password, name)
     },
   })
 
@@ -66,6 +75,23 @@ const SignUpPage = () => {
           <p>
             {formik.touched.password && formik.errors.password
               ? formik.errors.password
+              : ''}
+          </p>
+        </div>
+        <div>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            placeholder="Repeat password..."
+            value={formik.values.confirmPassword}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <p>
+            {formik.touched.confirmPassword && formik.errors.confirmPassword
+              ? formik.errors.confirmPassword
               : ''}
           </p>
         </div>
