@@ -1,0 +1,10 @@
+.btn {
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 16px 32px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -16,3 +16,8 @@ export const signInSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required!'),
   password: Yup.string().required('Required!'),
 })
+
+export const addEditSchema = Yup.object({
+  title: Yup.string().required('Required!'),
+  status: Yup.string().required('Required!'),
+})

@@ -1,0 +1,10 @@
+.iconBtn {
+  display: block;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

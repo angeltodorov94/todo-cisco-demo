@@ -1,8 +1,15 @@
 import { v4 as uuidv4 } from 'uuid'
 import { store } from '../app/store'
-import { initTodos } from '../features/todos/todosSlice'
+import { addTodo, initTodos } from '../features/todos/todosSlice'
 import { login, logout } from '../features/users/usersSlice'
-import { ToDoUserState, User, UsersState } from './types'
+import {
+  Status,
+  ToDoApi,
+  ToDoUser,
+  ToDoUserState,
+  User,
+  UsersState,
+} from './types'
 
 const initialState: UsersState = {
   data: [],
@@ -78,11 +85,42 @@ export const logoutHandler = () => {
 
 export const initialToDosSetup = () => {
   const value = localStorage.getItem('todos')
+  const userId = localStorage.getItem('token')
 
   if (value) {
     const { data } = JSON.parse(value) as ToDoUserState
-    store.dispatch(initTodos(data))
+    const thisUserTodos = data.filter((x) => x.userId === userId)
+    store.dispatch(initTodos(thisUserTodos))
   } else {
     localStorage.setItem('todos', JSON.stringify({ data: [] }))
   }
+}
+
+export const updateLocalStorageToDos = () => {
+  localStorage.setItem('todos', JSON.stringify(store.getState().todos))
+}
+
+export const addTodoHandler = (title: string, statusString: string) => {
+  const status: Status = statusString as Status
+  const userId = localStorage.getItem('token')
+
+  if (!userId) {
+    return
+  }
+
+  const newTodo: ToDoUser = {
+    id: uuidv4(),
+    title,
+    status,
+    userId,
+  }
+
+  store.dispatch(addTodo(newTodo))
+  updateLocalStorageToDos()
+}
+
+export const isInstanceOfToDoUser = (
+  data: ToDoUser | ToDoApi
+): data is ToDoUser => {
+  return 'status' in data
 }

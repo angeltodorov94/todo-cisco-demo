@@ -9,6 +9,9 @@ export const todosApi = createApi({
   endpoints: (builder) => ({
     getPosts: builder.query<ToDoApi[], void>({
       query: () => 'todos',
+      transformResponse: (response: ToDoApi[]) => {
+        return response.slice(0, 5)
+      },
     }),
   }),
 })

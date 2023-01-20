@@ -14,6 +14,15 @@ export interface ToDoUser {
 
 export type Status = 'To Do' | 'In progress' | 'QA' | 'Done'
 
+export const statuses: Status[] = ['To Do', 'In progress', 'QA', 'Done']
+
+export enum Statuses {
+  'To Do',
+  'In progress',
+  'QA',
+  'Done',
+}
+
 export interface User {
   email: string
   name: string
@@ -32,4 +41,9 @@ export interface ToDoUserState {
 
 export interface UsersState {
   data: User[]
+}
+
+export interface Route {
+  path: string
+  component: JSX.Element
 }

@@ -1,0 +1,11 @@
+.board-grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 16px;
+
+  padding: 16px 32px;
+
+  .board-column {
+    text-align: center;
+  }
+}
