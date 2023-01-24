@@ -1,4 +1,4 @@
-import './IconButton.scss'
+import s from './IconButton.scss'
 
 interface Props {
   onClick: () => void
@@ -7,7 +7,7 @@ interface Props {
 
 const IconButton = ({ onClick, children }: Props) => {
   return (
-    <button className="iconBtn" onClick={onClick}>
+    <button data-testid="icon-btn" className={s.btn} onClick={onClick}>
       {children}
     </button>
   )

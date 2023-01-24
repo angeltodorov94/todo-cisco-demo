@@ -1,7 +1,7 @@
 import IconButton from '../buttons/IconButton'
 import EditIcon from '../../assets/edit.png'
 import DeleteIcon from '../../assets/delete.png'
-import './ToDoCard.scss'
+import s from './ToDoCard.scss'
 import { ToDoApi, ToDoUser } from '../../utils/types'
 import {
   isInstanceOfToDoUser,
@@ -15,25 +15,25 @@ import DeleteTodo from '../delete-todo/DeleteTodo'
 
 interface Props {
   todo: ToDoUser | ToDoApi
-  noButtons?: true
 }
 
-const ToDoCard = ({ todo, noButtons }: Props) => {
+const ToDoCard = ({ todo }: Props) => {
   const { id, title } = todo
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 
   const deleteHandler = () => {
     store.dispatch(deleteTodo(id.toString()))
-    updateLocalStorageToDos()
+    if (isInstanceOfToDoUser(todo))
+      updateLocalStorageToDos('delete', todo, id.toString())
   }
 
   return (
     <>
-      <div className="todo-card-container">
+      <div className={s.container}>
         <p>{title}</p>
-        {!noButtons && (
-          <div className="todo-card-btns">
+        {isInstanceOfToDoUser(todo) && (
+          <div>
             <IconButton onClick={() => setIsEditModalOpen(true)}>
               <img src={EditIcon} alt="edit-icon" />
             </IconButton>

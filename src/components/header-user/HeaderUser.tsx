@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../app/store'
 import { logoutHandler } from '../../utils/helperFunctions'
-import './HeaderUser.scss'
+import { routes } from '../../utils/routes'
+import s from './HeaderUser.scss'
 
 const HeaderUser = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false)
@@ -12,14 +13,14 @@ const HeaderUser = () => {
 
   return (
     <div
-      className="header-user-dropdown"
+      className={s.container}
       onMouseEnter={() => setIsDropdownVisible(true)}
       onMouseLeave={() => setIsDropdownVisible(false)}
     >
-      <p className="user-btn">{user?.name}</p>
+      <p>{user?.name}</p>
       {isDropdownVisible && (
-        <div className="dropdown-menu">
-          <button onClick={() => navigate('/')}>Board</button>
+        <div className={s.dropdown}>
+          <button onClick={() => navigate(routes.home)}>Board</button>
           <button onClick={() => logoutHandler()}>Logout</button>
         </div>
       )}

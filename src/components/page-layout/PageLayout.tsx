@@ -6,7 +6,7 @@ interface Props {
 
 const PageLayout = ({ children }: Props) => {
   return (
-    <div>
+    <div data-testid="page-layout">
       <Header />
       {children}
     </div>

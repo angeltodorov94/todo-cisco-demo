@@ -1,7 +1,9 @@
+@import '../../utils/variables';
+
 .modalBackground {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(200, 200, 200, 0.5);
+  background-color: rgba($btn-dismiss, 0.5);
   position: fixed;
   display: flex;
   justify-content: center;
@@ -11,8 +13,8 @@
 }
 
 .modalContainer {
-  padding: 50px;
-  background-color: white;
-  border: 1px solid silver;
-  border-radius: 10px;
+  padding: 3rem;
+  background-color: $bg-white;
+  border: $border;
+  border-radius: 0.5rem;
 }

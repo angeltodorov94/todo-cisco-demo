@@ -1,7 +1,10 @@
 import { useFormik } from 'formik'
 import { store } from '../../app/store'
 import { editTodo } from '../../features/todos/todosSlice'
-import { addTodoHandler } from '../../utils/helperFunctions'
+import {
+  addTodoHandler,
+  updateLocalStorageToDos,
+} from '../../utils/helperFunctions'
 import { Status, statuses, ToDoUser } from '../../utils/types'
 import { addEditSchema } from '../../utils/validationSchemas'
 import Button from '../buttons/Button'
@@ -25,10 +28,11 @@ const AddEditTodo = ({ todo, close }: Props) => {
         const castStatus: Status = status as Status
         const updatedTodo: ToDoUser = { ...todo, title, status: castStatus }
         store.dispatch(editTodo(updatedTodo))
+        updateLocalStorageToDos('edit', updatedTodo)
       } else {
         addTodoHandler(title, status)
-        close()
       }
+      close()
     },
   })
 
@@ -77,10 +81,10 @@ const AddEditTodo = ({ todo, close }: Props) => {
               : ' '}
           </p>
         </div>
-        <Button onClick={close} color="silver" text="Close" />
+        <Button onClick={close} type="dismiss" text="Close" />
         <Button
           isSubmit
-          color="dodgerblue"
+          type="primary"
           text={todo ? 'Save changes' : 'Create Task'}
         />
       </form>

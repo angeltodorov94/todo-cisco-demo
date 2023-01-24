@@ -1,4 +1,4 @@
-import './ModalContainer.scss'
+import s from './ModalContainer.scss'
 
 interface Props {
   children: JSX.Element
@@ -6,8 +6,8 @@ interface Props {
 
 const ModalContainer = ({ children }: Props) => {
   return (
-    <div className="modalBackground">
-      <div className="modalContainer">{children}</div>
+    <div data-testid="modal-background" className={s.modalBackground}>
+      <div className={s.modalContainer}>{children}</div>
     </div>
   )
 }

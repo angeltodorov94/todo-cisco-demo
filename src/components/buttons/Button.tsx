@@ -1,20 +1,19 @@
-import './Button.scss'
+import s from './Button.scss'
+
+export type Types = 'primary' | 'secondary' | 'dismiss' | 'transparent'
 
 interface Props {
-  color: string
+  type: Types
   text: string
   isSubmit?: true
   onClick?: () => void
 }
 
-const Button = ({ text, color, isSubmit, onClick }: Props) => {
+const Button = ({ text, type, isSubmit, onClick }: Props) => {
   return (
     <button
-      className="btn"
-      style={{
-        backgroundColor: color,
-        color: color === 'transparent' ? 'black' : 'white',
-      }}
+      data-testid="btn"
+      className={[s.btn, s[type]].join(' ')}
       onClick={onClick}
       type={isSubmit ? 'submit' : 'button'}
     >

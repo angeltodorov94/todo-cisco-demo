@@ -9,11 +9,11 @@ interface Props {
 const DeleteTodo = ({ confirm, close }: Props) => {
   return (
     <ModalContainer>
-      <div>
+      <div data-testid="delete-todo">
         <h3>Delete Task</h3>
         <p>Are you sure you want to delete this task?</p>
-        <Button text="Delete" color="red" onClick={confirm} />
-        <Button text="Cancel" color="transparent" onClick={close} />
+        <Button text="Delete" type="secondary" onClick={confirm} />
+        <Button text="Cancel" type="transparent" onClick={close} />
       </div>
     </ModalContainer>
   )

@@ -1,12 +1,13 @@
 @import '../../utils/common';
+@import '../../utils/variables';
 
-.header-container {
+.container {
   @include flexRowSpaceBetween;
 
-  padding: 16px 32px;
-  background-color: white;
+  padding: 1rem 2rem;
+  background-color: $bg-white;
 
   img {
-    height: 64px;
+    height: 4rem;
   }
 }

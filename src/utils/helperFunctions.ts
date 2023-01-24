@@ -96,8 +96,34 @@ export const initialToDosSetup = () => {
   }
 }
 
-export const updateLocalStorageToDos = () => {
-  localStorage.setItem('todos', JSON.stringify(store.getState().todos))
+export const updateLocalStorageToDos = (
+  action: 'add' | 'delete' | 'edit',
+  newTodo: ToDoUser,
+  id?: string
+) => {
+  const localStorageToDos = localStorage.getItem('todos')
+
+  if (!localStorageToDos) return
+
+  const todos = JSON.parse(localStorageToDos) as ToDoUserState
+
+  switch (action) {
+    case 'add':
+      todos.data.push(newTodo)
+      break
+    case 'delete':
+      const index = todos.data.findIndex((x) => x.id === id)
+      todos.data.splice(index, 1)
+      break
+    case 'edit':
+      const i = todos.data.findIndex((x) => x.id === newTodo.id)
+      todos.data.splice(i, 1, newTodo)
+      break
+    default:
+      break
+  }
+
+  localStorage.setItem('todos', JSON.stringify(todos))
 }
 
 export const addTodoHandler = (title: string, statusString: string) => {
@@ -116,7 +142,7 @@ export const addTodoHandler = (title: string, statusString: string) => {
   }
 
   store.dispatch(addTodo(newTodo))
-  updateLocalStorageToDos()
+  updateLocalStorageToDos('add', newTodo)
 }
 
 export const isInstanceOfToDoUser = (

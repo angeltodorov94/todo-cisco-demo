@@ -1,19 +1,20 @@
 @import '../../utils/common';
+@import '../../utils/variables';
 
-.todo-card-container {
+.container {
   @include flexRowSpaceBetween;
 
-  border: 1px silver solid;
-  border-radius: 10px;
-  background-color: white;
-  margin-bottom: 10px;
-  padding: 10px;
+  border: $border;
+  border-radius: 0.5rem;
+  background-color: $bg-white;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
 
   p {
     text-align: left;
   }
 
   img {
-    width: 20px;
+    width: 1.2rem;
   }
 }

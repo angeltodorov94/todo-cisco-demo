@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { RootState } from './app/store'
 import { AuthGuard, PublicGuard } from './components/guards/Guards'
 import { initialCheckOnLogin } from './utils/helperFunctions'
-import { authRoutes, guestRoutes } from './utils/routes'
+import { authRoutes, guestRoutes, routes } from './utils/routes'
 
 const App = () => {
   const { isLoggedIn } = useSelector((state: RootState) => state.users)
@@ -35,7 +35,7 @@ const App = () => {
     <Routes>
       {renderAuthRoutes()}
       {renderGuestRoutes()}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to={routes.home} replace />} />
     </Routes>
   )
 }

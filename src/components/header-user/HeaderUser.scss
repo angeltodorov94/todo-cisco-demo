@@ -1,14 +1,16 @@
-.header-user-dropdown {
+@import '../../utils/variables';
+
+.container {
   position: relative;
 
   p,
   button {
-    color: white;
+    color: $text-color-secondary;
     text-align: center;
-    background-color: dodgerblue;
+    background-color: $btn-primary;
     margin: 0;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
 
     &:hover {
       cursor: pointer;
@@ -16,7 +18,7 @@
   }
 }
 
-.dropdown-menu {
+.dropdown {
   position: absolute;
   right: 0;
   text-align: right;

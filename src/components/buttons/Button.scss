@@ -1,10 +1,27 @@
+@import '../../utils/variables';
+
 .btn {
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  padding: 16px 32px;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  color: $text-color-secondary;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.primary {
+  background-color: $btn-primary;
+}
+.secondary {
+  background-color: $btn-secondary;
+}
+.dismiss {
+  background-color: $btn-dismiss;
+}
+.transparent {
+  background-color: $btn-transparent;
+  color: $text-color-primary;
 }

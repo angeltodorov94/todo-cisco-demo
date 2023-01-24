@@ -98,7 +98,7 @@ const SignUpPage = () => {
                 : ''}
             </p>
           </div>
-          <Button text="Register" color="dodgerblue" isSubmit />
+          <Button text="Register" type="primary" isSubmit />
         </form>
       </>
     </CenterFormContainer>

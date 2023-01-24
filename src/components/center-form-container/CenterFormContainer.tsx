@@ -1,4 +1,4 @@
-import './CenterFormContainer.scss'
+import s from './CenterFormContainer.scss'
 
 interface Props {
   children: JSX.Element
@@ -6,8 +6,10 @@ interface Props {
 
 const CenterFormContainer = ({ children }: Props) => {
   return (
-    <div className="outerContainer">
-      <div className="innerContainer">{children}</div>
+    <div data-testid="centerFormContainer" className={s.container}>
+      <div data-testid="innerCenterFormContainer" className={s.inner}>
+        {children}
+      </div>
     </div>
   )
 }

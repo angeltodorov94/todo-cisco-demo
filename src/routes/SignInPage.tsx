@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Button from '../components/buttons/Button'
 import CenterFormContainer from '../components/center-form-container/CenterFormContainer'
 import { signInHandler } from '../utils/helperFunctions'
+import { routes } from '../utils/routes'
 import { signInSchema } from '../utils/validationSchemas'
 
 const SignInPage = () => {
@@ -66,10 +67,10 @@ const SignInPage = () => {
                 : ''}
             </p>
           </div>
-          <Button text="Sign In" color="dodgerblue" isSubmit />
+          <Button text="Sign In" type="primary" isSubmit />
         </form>
         <p>or</p>
-        <Link to="/sign-up">Create an account</Link>
+        <Link to={routes.signUp}>Create an account</Link>
       </>
     </CenterFormContainer>
   )

@@ -1,7 +1,9 @@
-.iconBtn {
+@import '../../utils/variables';
+
+.btn {
   display: block;
-  padding: 5px;
-  background-color: transparent;
+  padding: 0.5rem;
+  background-color: $btn-transparent;
   border: none;
 
   &:hover {

@@ -25,8 +25,24 @@ module.exports = {
         ],
       },
       {
-        test: /\.(s(a|c)ss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.(scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+
+            options: {
+              modules: {
+                localIdentName: '[name]_[local]_[hash:base64:3]',
+              },
+
+              importLoaders: 1,
+
+              sourceMap: true,
+            },
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,

@@ -1,14 +1,14 @@
 import Logo from '../../assets/jira_logo.png'
-import './Header.scss'
 import { RootState } from '../../app/store'
 import { useSelector } from 'react-redux'
 import HeaderUser from '../header-user/HeaderUser'
+import s from './Header.scss'
 
 const Header = () => {
   const { isLoggedIn } = useSelector((state: RootState) => state.users)
 
   return (
-    <div className="header-container">
+    <div className={s.container}>
       <img src={Logo} alt="jira-logo" />
       {isLoggedIn && <HeaderUser />}
     </div>

@@ -7,7 +7,7 @@ import ToDoCard from '../../components/todo-card/ToDoCard'
 import { useGetPostsQuery } from '../../services/todosAPI'
 import { initialToDosSetup } from '../../utils/helperFunctions'
 import { Status } from '../../utils/types'
-import './HomePage.scss'
+import s from './HomePage.scss'
 
 const columns: Status[] = ['To Do', 'In progress', 'QA', 'Done']
 
@@ -21,7 +21,7 @@ const HomePage = () => {
   }, [])
 
   const renderApiPosts = () =>
-    data?.map((x) => <ToDoCard key={x.id} todo={x} noButtons />)
+    data?.map((x) => <ToDoCard key={x.id} todo={x} />)
 
   const renderUserToDos = (type: Status) =>
     todos
@@ -31,13 +31,13 @@ const HomePage = () => {
   const renderColumns = () =>
     columns.map((title) => {
       return (
-        <div className="board-column" key={title}>
-          <h3 className="board-title">{title}</h3>
+        <div className={s.column} key={title}>
+          <h3>{title}</h3>
           {title === 'To Do' && renderApiPosts()}
           {renderUserToDos(title)}
           <Button
             text="Add Task"
-            color="dodgerblue"
+            type="primary"
             onClick={() => setIsModalOpen(true)}
           />
         </div>
@@ -50,7 +50,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="board-grid-container">{renderColumns()}</div>
+      <div className={s.container}>{renderColumns()}</div>
       {isModalOpen && <AddEditTodo close={() => setIsModalOpen(false)} />}
     </>
   )

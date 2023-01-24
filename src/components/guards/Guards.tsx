@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom'
+import { routes } from '../../utils/routes'
 
 interface Props {
   isLoggedIn: boolean
@@ -7,7 +8,7 @@ interface Props {
 
 export const AuthGuard = ({ isLoggedIn, children }: Props) => {
   if (!isLoggedIn) {
-    return <Navigate to="/sign-in" replace />
+    return <Navigate to={routes.signIn} replace />
   }
 
   return children
@@ -15,7 +16,7 @@ export const AuthGuard = ({ isLoggedIn, children }: Props) => {
 
 export const PublicGuard = ({ isLoggedIn, children }: Props) => {
   if (isLoggedIn) {
-    return <Navigate to="/" replace />
+    return <Navigate to={routes.home} replace />
   }
 
   return children
