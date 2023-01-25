@@ -1,17 +1,17 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import ModalContainer from './ModalContainer'
 
 describe('Test the ModalContainer component', () => {
   test('Testing rendering of the component and the children', () => {
-    render(
+    const { getByTestId } = render(
       <ModalContainer>
         <div />
       </ModalContainer>
     )
 
-    const modalWrapper = screen.getByTestId('modal-background')
+    const modalWrapper = getByTestId('modal-background')
 
-    expect(modalWrapper).toBeTruthy()
+    expect(modalWrapper).toBeVisible()
     expect(modalWrapper.className).toEqual('modalBackground')
 
     expect(modalWrapper.childElementCount).toEqual(1)

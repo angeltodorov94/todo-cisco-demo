@@ -16,6 +16,15 @@ export type Status = 'To Do' | 'In progress' | 'QA' | 'Done'
 
 export const statuses: Status[] = ['To Do', 'In progress', 'QA', 'Done']
 
+export type Types = 'primary' | 'secondary' | 'dismiss' | 'transparent'
+
+export const classes: Types[] = [
+  'primary',
+  'secondary',
+  'dismiss',
+  'transparent',
+]
+
 export enum Statuses {
   'To Do',
   'In progress',

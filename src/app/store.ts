@@ -1,17 +1,29 @@
-import { configureStore } from '@reduxjs/toolkit'
+import {
+  combineReducers,
+  configureStore,
+  PreloadedState,
+} from '@reduxjs/toolkit'
 import { todosSlice } from '../features/todos/todosSlice'
 import { userSlice } from '../features/users/usersSlice'
 import { todosApi } from '../services/todosAPI'
 
-export const store = configureStore({
-  reducer: {
-    [todosApi.reducerPath]: todosApi.reducer,
-    users: userSlice.reducer,
-    todos: todosSlice.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(todosApi.middleware),
+export const rootReducer = combineReducers({
+  [todosApi.reducerPath]: todosApi.reducer,
+  users: userSlice.reducer,
+  todos: todosSlice.reducer,
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export const storeWithPreloadedState = (
+  preloadedState?: PreloadedState<RootState>
+) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(todosApi.middleware),
+  })
+
+export const store = storeWithPreloadedState()
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof storeWithPreloadedState>
+export type AppDispatch = AppStore['dispatch']

@@ -1,23 +1,25 @@
 import * as Yup from 'yup'
 
+const required = 'Required!'
+
 export const signUpSchema = Yup.object({
-  email: Yup.string().email('Invalid email address').required('Required!'),
-  name: Yup.string().required('Required!'),
+  email: Yup.string().email('Invalid email address').required(required),
+  name: Yup.string().required(required),
   password: Yup.string()
     .length(8, 'Password must be 8 characters!')
     .matches(/[A-Za-z]{8}/, 'Password can only contain a-z, A-Z')
-    .required('Required!'),
+    .required(required),
   confirmPassword: Yup.string()
-    .required()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required(required),
 })
 
 export const signInSchema = Yup.object({
-  email: Yup.string().email('Invalid email address').required('Required!'),
-  password: Yup.string().required('Required!'),
+  email: Yup.string().email('Invalid email address').required(required),
+  password: Yup.string().required(required),
 })
 
 export const addEditSchema = Yup.object({
-  title: Yup.string().required('Required!'),
-  status: Yup.string().required('Required!'),
+  title: Yup.string().required(required),
+  status: Yup.string().required(required),
 })

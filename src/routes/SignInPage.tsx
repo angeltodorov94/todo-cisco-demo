@@ -29,7 +29,7 @@ const SignInPage = () => {
 
   return (
     <CenterFormContainer>
-      <>
+      <div data-testid="singin-page-container">
         <h1>Sign In</h1>
         {error && <p>{error}</p>}
         <form onSubmit={formik.handleSubmit}>
@@ -44,7 +44,7 @@ const SignInPage = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <p className="inputError">
+            <p data-testid="inputEmailError" className="inputError">
               {formik.touched.email && formik.errors.email
                 ? formik.errors.email
                 : ''}
@@ -61,7 +61,7 @@ const SignInPage = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <p className="inputError">
+            <p data-testid="inputPasswordError" className="inputError">
               {formik.touched.password && formik.errors.password
                 ? formik.errors.password
                 : ''}
@@ -71,7 +71,7 @@ const SignInPage = () => {
         </form>
         <p>or</p>
         <Link to={routes.signUp}>Create an account</Link>
-      </>
+      </div>
     </CenterFormContainer>
   )
 }

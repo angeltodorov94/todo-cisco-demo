@@ -27,7 +27,7 @@ const SignUpPage = () => {
 
   return (
     <CenterFormContainer>
-      <>
+      <div data-testid="signup-page-container">
         <h1>Sign Up Page</h1>
         <form onSubmit={formik.handleSubmit}>
           <div>
@@ -41,7 +41,7 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <p className="inputError">
+            <p data-testid="inputEmailError" className="inputError">
               {formik.touched.email && formik.errors.email
                 ? formik.errors.email
                 : ''}
@@ -58,7 +58,7 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <p className="inputError">
+            <p data-testid="inputNameError" className="inputError">
               {formik.touched.name && formik.errors.name
                 ? formik.errors.name
                 : ''}
@@ -75,7 +75,7 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <p className="inputError">
+            <p data-testid="inputPasswordError" className="inputError">
               {formik.touched.password && formik.errors.password
                 ? formik.errors.password
                 : ''}
@@ -92,7 +92,7 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <p>
+            <p data-testid="inputRePasswordError" className="inputError">
               {formik.touched.confirmPassword && formik.errors.confirmPassword
                 ? formik.errors.confirmPassword
                 : ''}
@@ -100,7 +100,7 @@ const SignUpPage = () => {
           </div>
           <Button text="Register" type="primary" isSubmit />
         </form>
-      </>
+      </div>
     </CenterFormContainer>
   )
 }

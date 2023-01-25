@@ -13,13 +13,14 @@ const HeaderUser = () => {
 
   return (
     <div
+      data-testid="header-user-container"
       className={s.container}
       onMouseEnter={() => setIsDropdownVisible(true)}
       onMouseLeave={() => setIsDropdownVisible(false)}
     >
-      <p>{user?.name}</p>
+      <p data-testid="header-user-name">{user?.name}</p>
       {isDropdownVisible && (
-        <div className={s.dropdown}>
+        <div data-testid="header-user-dropdown" className={s.dropdown}>
           <button onClick={() => navigate(routes.home)}>Board</button>
           <button onClick={() => logoutHandler()}>Logout</button>
         </div>

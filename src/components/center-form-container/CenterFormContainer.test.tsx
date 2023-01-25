@@ -1,21 +1,21 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import CenterFormContainer from './CenterFormContainer'
 
 describe('Test the CenterFormContainer component', () => {
   test('Testing rendering component and children', () => {
-    render(
+    const { getByTestId } = render(
       <CenterFormContainer>
         <div />
       </CenterFormContainer>
     )
 
-    const container = screen.getByTestId('centerFormContainer')
-    const innerContainer = screen.getByTestId('innerCenterFormContainer')
+    const container = getByTestId('centerFormContainer')
+    const innerContainer = getByTestId('innerCenterFormContainer')
 
-    expect(container).toBeTruthy()
-    expect(container.className).toEqual('container')
-    expect(innerContainer).toBeTruthy()
-    expect(innerContainer.className).toEqual('inner')
+    expect(container).toBeVisible()
+    expect(container).toHaveClass('container')
+    expect(innerContainer).toBeVisible()
+    expect(innerContainer).toHaveClass('inner')
     expect(innerContainer.childElementCount).toEqual(1)
   })
 })

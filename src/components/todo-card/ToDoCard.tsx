@@ -7,11 +7,11 @@ import {
   isInstanceOfToDoUser,
   updateLocalStorageToDos,
 } from '../../utils/helperFunctions'
-import { store } from '../../app/store'
 import { deleteTodo } from '../../features/todos/todosSlice'
 import AddEditTodo from '../add-edit-todo/AddEditTodo'
 import { useState } from 'react'
 import DeleteTodo from '../delete-todo/DeleteTodo'
+import { useAppDispatch } from '../../app/hooks'
 
 interface Props {
   todo: ToDoUser | ToDoApi
@@ -21,19 +21,20 @@ const ToDoCard = ({ todo }: Props) => {
   const { id, title } = todo
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const dispatch = useAppDispatch()
 
   const deleteHandler = () => {
-    store.dispatch(deleteTodo(id.toString()))
+    dispatch(deleteTodo(id.toString()))
     if (isInstanceOfToDoUser(todo))
       updateLocalStorageToDos('delete', todo, id.toString())
   }
 
   return (
     <>
-      <div className={s.container}>
-        <p>{title}</p>
+      <div data-testid="todo-card-container" className={s.container}>
+        <p data-testid="todo-card-title">{title}</p>
         {isInstanceOfToDoUser(todo) && (
-          <div>
+          <div data-testid="todo-card-btns">
             <IconButton onClick={() => setIsEditModalOpen(true)}>
               <img src={EditIcon} alt="edit-icon" />
             </IconButton>

@@ -1,19 +1,19 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
 import IconButton from './IconButton'
 
 describe('Test the IconButton component', () => {
   test('Testing rendering children component and onCLick event', () => {
     const fn = jest.fn()
 
-    render(
+    const { getByTestId } = render(
       <IconButton onClick={fn}>
         <div />
       </IconButton>
     )
 
-    const iconContainer = screen.getByTestId('icon-btn')
+    const iconContainer = getByTestId('icon-btn')
 
-    expect(iconContainer).toBeTruthy()
+    expect(iconContainer).toBeVisible()
     expect(iconContainer.className).toBe('btn')
     expect(iconContainer.childElementCount).toEqual(1)
 

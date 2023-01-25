@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import { store } from '../../app/store'
+import { useAppDispatch } from '../../app/hooks'
 import { editTodo } from '../../features/todos/todosSlice'
 import {
   addTodoHandler,
@@ -17,6 +17,8 @@ interface Props {
 }
 
 const AddEditTodo = ({ todo, close }: Props) => {
+  const dispatch = useAppDispatch()
+
   const formik = useFormik({
     initialValues: {
       title: todo ? todo.title : '',
@@ -27,7 +29,7 @@ const AddEditTodo = ({ todo, close }: Props) => {
       if (todo) {
         const castStatus: Status = status as Status
         const updatedTodo: ToDoUser = { ...todo, title, status: castStatus }
-        store.dispatch(editTodo(updatedTodo))
+        dispatch(editTodo(updatedTodo))
         updateLocalStorageToDos('edit', updatedTodo)
       } else {
         addTodoHandler(title, status)
@@ -45,7 +47,7 @@ const AddEditTodo = ({ todo, close }: Props) => {
 
   return (
     <ModalContainer>
-      <form onSubmit={formik.handleSubmit}>
+      <form data-testid="addEditToDo-container" onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="title">Title:</label>
           <input

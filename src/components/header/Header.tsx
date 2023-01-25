@@ -8,7 +8,7 @@ const Header = () => {
   const { isLoggedIn } = useSelector((state: RootState) => state.users)
 
   return (
-    <div className={s.container}>
+    <div data-testid="header-container" className={s.container}>
       <img src={Logo} alt="jira-logo" />
       {isLoggedIn && <HeaderUser />}
     </div>

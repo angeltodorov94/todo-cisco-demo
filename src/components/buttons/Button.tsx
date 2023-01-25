@@ -1,6 +1,5 @@
+import { Types } from '../../utils/types'
 import s from './Button.scss'
-
-export type Types = 'primary' | 'secondary' | 'dismiss' | 'transparent'
 
 interface Props {
   type: Types
